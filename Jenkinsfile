@@ -9,16 +9,11 @@ pipeline {
   stages {
     stage('Pre-cleanup') {
       steps {
-        // sh 'rm -rf ./venv'
+
         sh 'rm -rf ./node_modules'
-        // sh 'rm -rf ./bower_components'
       }
     }
-    stage('Make venv') {
-      steps {
-        // sh 'npm i'
-      }
-    }
+
     stage('Install dependencies') {
       steps {
         // sh '. ./venv/bin/activate && npm install'
