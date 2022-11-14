@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 pipeline {
-  agent any
+  agent {dockfile true}
   /*
   environment {
     // NODE_ENV_PATH = './venv'
@@ -9,7 +9,6 @@ pipeline {
   stages {
     stage('Pre-cleanup') {
       steps {
-
         sh 'rm -rf ./node_modules'
       }
     }
@@ -17,13 +16,19 @@ pipeline {
     stage('Install dependencies') {
       steps {
         // sh '. ./venv/bin/activate && npm install'
-        sh 'npm i'
+        sh 'npm install'
       }
     }
     stage('Run tests') {
       steps {
         // sh '. ./node_env/bin/activate && npm test'
         sh 'npm test'
+      }
+    }
+    stage('integration test') {
+      agent { dockerfile true }
+      steps {
+        sh 'node --version'
       }
     }
   }
