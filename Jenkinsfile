@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 pipeline {
-  agent {dockfile true}
+  agent {dockerfile true}
   /*
   environment {
     // NODE_ENV_PATH = './venv'
